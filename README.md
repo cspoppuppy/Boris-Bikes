@@ -21,8 +21,4 @@ I'd like to see if a bike is working
 | -----------------| -----------------|
 
 
-person > docking station > bike > works?
-                                > releases?
-
-                                
-                                
+person > docking station > release_bike > working?

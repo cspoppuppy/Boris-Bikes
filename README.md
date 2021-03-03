@@ -1,5 +1,7 @@
 # Boris Bikes
 
+## Day 1
+
 User story 1 & 2
 
 As a person,
@@ -19,3 +21,21 @@ I'd like to see if a bike is working
 
 
 person > docking station > release_bike > working?
+
+## Day 2
+
+User story
+
+As a member of the public
+So I can return bikes I've hired
+I want to dock my bike at the docking station
+
+As a member of the public
+So I can decide whether to use the docking station
+I want to see a bike that has been docked
+
+| Objects          | Messages         |
+|------------------|------------------|
+| member of public |                  |
+| docking station  | dock bike        |
+| docking station  | see bike         |

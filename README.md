@@ -14,11 +14,8 @@ I'd like to see if a bike is working
 | Objects          | Messages         |
 |------------------|------------------|
 | person           |                  |
-| -----------------| -----------------|
 | docking station  | release bike     |
-| -----------------| -----------------|
 | bike             | working or not   |
-| -----------------| -----------------|
 
 
 person > docking station > release_bike > working?

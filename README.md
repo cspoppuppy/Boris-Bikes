@@ -39,3 +39,14 @@ I want to see a bike that has been docked
 | member of public |                  |
 | docking station  | dock bike        |
 | docking station  | see bike         |
+
+As a member of the public,
+So that I am not confused and charged unnecessarily,
+I'd like docking stations not to release bikes when there are none available.
+
+| Objects          | Messages                       |
+|------------------|--------------------------------|
+| member of public |                                |
+| docking station  | not release when non available |
+
+

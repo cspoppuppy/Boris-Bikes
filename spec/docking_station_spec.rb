@@ -91,4 +91,11 @@ describe DockingStation do
         expect{ds.dock_bike(Bike.new) }.to raise_error "Dock is full"
     end
 
+    it "not release when bike is broken" do
+        bike = Bike.new
+        bike.report_broken
+        subject.dock_bike(bike)
+        expect{subject.release_bike}.to raise_error "Bike is broken"
+    end
+
 end

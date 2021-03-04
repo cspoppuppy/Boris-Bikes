@@ -28,7 +28,7 @@ describe DockingStation do
     #end
 
     # ---------------------------------------------------
-    # Day 2
+    # Day 2 (11-14)
     # ---------------------------------------------------
     # dock bike at docking station
     it { is_expected.to respond_to(:dock_bike).with(1).argument }
@@ -60,11 +60,35 @@ describe DockingStation do
         subject.dock_bike(Bike.new)
         expect { subject.dock_bike(Bike.new) }.to raise_error "Dock is full"
     end
+
+    it "raise error when dock over 20 bikes" do
+        20.times { subject.dock_bike(Bike.new) }
+        expect { subject.dock_bike(Bike.new) }.to raise_error "Dock is full"
+    end
 =end
 
+    # ---------------------------------------------------
+    # Day 3 (15-21)
+    # ---------------------------------------------------
+=begin
     it "raise error when dock over 20 bikes" do
         DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
         expect { subject.dock_bike(Bike.new) }.to raise_error "Dock is full"
+    end
+=end
+
+    it "allow set capacity when new instance created" do
+        expect(DockingStation).to respond_to(:new).with(1).argument
+    end
+
+    it "default capacity should be set to 20 when no argument when create new instance" do
+        expect(subject.capacity).to eq 20
+    end
+
+    it "raise error when dock over 50 bikes" do
+        ds = DockingStation.new(50)
+        50.times { ds.dock_bike(Bike.new) }
+        expect{ds.dock_bike(Bike.new) }.to raise_error "Dock is full"
     end
 
 end

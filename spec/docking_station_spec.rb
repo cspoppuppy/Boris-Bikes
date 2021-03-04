@@ -92,8 +92,12 @@ describe DockingStation do
     end
 
     it "not release when bike is broken" do
-        bike = double(:bike)
-        bike.report_broken
+        # method 1
+        #bike = double(:bike)
+        #allow(bike).to receive(:working).and_return(false)
+        # method 2
+        bike = double(:bike, working:false)
+        #bike.report_broken
         subject.dock_bike(bike)
         expect{subject.release_bike}.to raise_error "Bike is broken"
     end

@@ -66,3 +66,17 @@ I want a docking station to have a default capacity of 20 bikes.
 |------------------|--------------------------------|
 | maintainer       |                                |
 | docking station  | capacity of 20 bikes           |
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to collect working bikes from garages and distribute them to docking stations.
+
+| Objects          | Messages                       |
+|------------------|--------------------------------|
+| maintainer       |                                |
+| van              | deliver from dock to garage    |
+| van              | collect from garage to dock    |

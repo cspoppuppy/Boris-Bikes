@@ -1,10 +1,8 @@
-require_relative 'bike'
+#require_relative 'bike'
 
 class DockingStation
     #DEFAULT_CAPACITY = 20
-    attr_reader :capacity
-
-    attr_reader :bikes
+    attr_reader :capacity, :bikes
 
     def initialize(capacity = 20)
         @bikes = Array.new
@@ -20,6 +18,16 @@ class DockingStation
     def dock_bike (bike)
         fail "Dock is full" if full?
         @bikes << bike
+    end
+
+    def release_broken_bikes
+        broken_bikes = @bikes.select { |bike| !bike.working }
+        @bikes.select! { |bike| bike.working }
+        broken_bikes
+    end
+
+    def receive_fixed_bikes(bikes)
+        @bikes += bikes
     end
 
     private

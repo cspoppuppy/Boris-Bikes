@@ -88,7 +88,7 @@ describe DockingStation do
     it "raise error when dock over 50 bikes" do
         ds = DockingStation.new(50)
         50.times { ds.dock_bike(double(:bike)) }
-        expect{ds.dock_bike(Bike.new) }.to raise_error "Dock is full"
+        expect{ds.dock_bike(double(:bike)) }.to raise_error "Dock is full"
     end
 
     it "not release when bike is broken" do

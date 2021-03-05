@@ -1,8 +1,9 @@
 require 'docking_station'
 require 'bike'
+require 'support/shared_examples_for_bike_container'
 
 describe DockingStation do
-
+    it_behaves_like BikeContainer
 =begin 
     # ---------------------------------------------------
     # Day 1 (1-10)
@@ -82,7 +83,6 @@ describe DockingStation do
             expect(described_class).to respond_to(:new).with(1).argument
         end
     end
-=end
 
     describe "#capacity" do
         it "default capacity should be set to 20" do
@@ -95,24 +95,24 @@ describe DockingStation do
             it "raise error" do
                 ds = described_class.new(capacity: 50) # capacity = 50
                 50.times { ds.dock_bike(double(:bike)) }
-                expect{ds.dock_bike(double(:bike)) }.to raise_error "Dock is full"
+                expect{ds.dock_bike(double(:bike)) }.to raise_error "#{described_class.name} is full"
             end
         end
     end
 
     describe "#release_bike" do
-        context "when bike is broken" do
-            it "raise error" do
-                # method 1
-                #bike = double(:bike)
-                #allow(bike).to receive(:working).and_return(false)
-                # method 2
-                bike = double(:bike, working:false)
-                #bike.report_broken
-                subject.dock_bike(bike)
-                expect{subject.release_bike}.to raise_error "Bike is broken"
-            end
-        end
+        # context "when bike is broken" do
+        #     it "raise error" do
+        #         # method 1
+        #         #bike = double(:bike)
+        #         #allow(bike).to receive(:working).and_return(false)
+        #         # method 2
+        #         bike = double(:bike, working:false)
+        #         #bike.report_broken
+        #         subject.dock_bike(bike)
+        #         expect{subject.release_bike}.to raise_error "Bike is broken"
+        #     end
+        # end
 
         context "when bike is released" do
             it "should be working" do
@@ -123,5 +123,5 @@ describe DockingStation do
             end
         end
     end
-
+=end
 end

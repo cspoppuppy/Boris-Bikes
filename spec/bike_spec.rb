@@ -6,6 +6,6 @@ describe Bike do
 
     it "working? set to false when report_broken" do
         subject.report_broken
-        expect(subject.working).to eq false
+        expect(subject).not_to be_working
     end
 end

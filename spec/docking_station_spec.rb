@@ -2,6 +2,8 @@ require 'docking_station'
 require 'bike'
 
 describe DockingStation do
+
+=begin 
     # ---------------------------------------------------
     # Day 1 (1-10)
     # ---------------------------------------------------
@@ -33,7 +35,6 @@ describe DockingStation do
     # dock bike at docking station
     it { is_expected.to respond_to(:dock_bike).with(1).argument }
 
-=begin 
     # see a bike
     it { is_expected.to respond_to(:bike) }
    
@@ -75,31 +76,52 @@ describe DockingStation do
         DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
         expect { subject.dock_bike(Bike.new) }.to raise_error "Dock is full"
     end
+
+    context "when new instance created" do
+        it "allow argument" do
+            expect(described_class).to respond_to(:new).with(1).argument
+        end
+    end
 =end
 
-    it "allow set capacity when new instance created" do
-        expect(DockingStation).to respond_to(:new).with(1).argument
+    describe "#capacity" do
+        it "default capacity should be set to 20" do
+            expect(subject.capacity).to eq 20
+        end
     end
 
-    it "default capacity should be set to 20 when no argument when create new instance" do
-        expect(subject.capacity).to eq 20
+    describe "#dock_bike" do
+        context "when dock over capacity" do
+            it "raise error" do
+                ds = described_class.new(capacity: 50) # capacity = 50
+                50.times { ds.dock_bike(double(:bike)) }
+                expect{ds.dock_bike(double(:bike)) }.to raise_error "Dock is full"
+            end
+        end
     end
 
-    it "raise error when dock over 50 bikes" do
-        ds = DockingStation.new(50)
-        50.times { ds.dock_bike(double(:bike)) }
-        expect{ds.dock_bike(double(:bike)) }.to raise_error "Dock is full"
-    end
+    describe "#release_bike" do
+        context "when bike is broken" do
+            it "raise error" do
+                # method 1
+                #bike = double(:bike)
+                #allow(bike).to receive(:working).and_return(false)
+                # method 2
+                bike = double(:bike, working:false)
+                #bike.report_broken
+                subject.dock_bike(bike)
+                expect{subject.release_bike}.to raise_error "Bike is broken"
+            end
+        end
 
-    it "not release when bike is broken" do
-        # method 1
-        #bike = double(:bike)
-        #allow(bike).to receive(:working).and_return(false)
-        # method 2
-        bike = double(:bike, working:false)
-        #bike.report_broken
-        subject.dock_bike(bike)
-        expect{subject.release_bike}.to raise_error "Bike is broken"
+        context "when bike is released" do
+            it "should be working" do
+                subject.dock_bike(Bike.new)
+                bike = subject.release_bike
+                #expect{subject.release_bike}.to raise_error "Bike is broken"
+                expect(bike).to be_working
+            end
+        end
     end
 
 end

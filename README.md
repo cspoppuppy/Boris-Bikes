@@ -80,3 +80,21 @@ I'd like vans to collect working bikes from garages and distribute them to docki
 | maintainer       |                                |
 | van              | deliver from dock to garage    |
 | van              | collect from garage to dock    |
+
+As a maintainer of the system,
+So that members of the public can get usable bikes,
+I'd like docking stations to ensure that returned entities are actually bikes
+
+As a member of the public,
+So that I can choose a particular bike of my preference,
+I'd like to be able to specify which bike I receive.
+
+| Objects          | Messages                       |
+|------------------|--------------------------------|
+| maintainer       |                                |
+| docking station  | dock actual bikes only         |
+| docking station  | release bike at choice         |
+
+As a member of the public,
+So that I can avoid the hassle of starting IRB,
+I'd like a text interface that can be run from the command line.
